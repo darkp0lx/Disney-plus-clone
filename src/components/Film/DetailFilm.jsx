@@ -7,7 +7,6 @@ import { useFavorites } from '../../hooks/useFavorites'
 export const DetailFilm = ({ item }) => {
   const { favorites, AddToFavorites, deleteToFavorites } = useFavorites()
 
-  console.log(item, 'itemDetail')
   return (
     <Container>
       <SideBackground>

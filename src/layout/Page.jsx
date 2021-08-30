@@ -4,10 +4,9 @@ import { useStateValue } from '../store/StateProvider'
 import { Login } from './Login'
 export function Page ({ children }) {
   const [{ user }, dispatch] = useStateValue()
-  console.log(user, 'userdd')
   return (
     <>
-      {!user ? (
+      {user ? (
         <>
           <Header />
           {children}
