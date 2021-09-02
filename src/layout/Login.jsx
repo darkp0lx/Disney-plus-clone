@@ -9,7 +9,7 @@ export const Login = () => {
   return (
     <Container>
       <Img className='logo' src='/images/logo.svg' />
-      <h2>Identificate Para entrar 🤞 </h2>
+      <h2>Identificate Para entrar porfavor 🤞 </h2>
       <ButtonSignUp onClick={signInGmail}>
         ingresa con gmail
         <SiGmail size={40} />
