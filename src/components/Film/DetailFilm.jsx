@@ -11,18 +11,19 @@ import {
 import { useFavorites } from '../../hooks/useFavorites'
 import { FaPlay, FaPlus, FaTrashAlt } from 'react-icons/fa'
 import { useRouter } from 'next/router'
+import { Modal, ModalButton } from '../Base/Modal'
 export const DetailFilm = ({ item }) => {
   const { AddToFavorites, DeleteToFavorites, isFavorite } = useFavorites(item)
 
   const route = useRouter()
   const shareUrl = `https://disney-plus-clone-inky.vercel.app/${route.asPath}`
-  const itemName = item.original_name
-    ? item.original_name
-    : item.original_title
-    ? item.original_title
-    : item.title
-    ? item.title
-    : item.name
+  const itemName = item?.original_name
+    ? item?.original_name
+    : item?.original_title
+    ? item?.original_title
+    : item?.title
+    ? item?.title
+    : item?.name
 
   const title = `${itemName} Disney Plus Clone`
 
@@ -34,10 +35,8 @@ export const DetailFilm = ({ item }) => {
       </SideBackground>
       <SideInfo>
         <ContainerButtons>
-          <ButtonDetail type='play'>
-            <FaPlay size={25} />
-            play
-          </ButtonDetail>
+          <ModalButton title={itemName} />
+
           <ButtonDetail transparent border>
             <FaPlay size={25} />
             trailler
@@ -145,6 +144,31 @@ const ContainerButtons = styled.div`
   flex-wrap: wrap;
   button {
     margin-right: 5px;
+  }
+  .buttonPlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45%;
+    height: 55px;
+    font-size: 1.3em;
+    margin-bottom: 0.5em;
+    svg {
+      margin-right: 4px;
+    }
+    background: ${props => (props.transparent ? 'transparent' : 'white')};
+    border: ${props => (props.border ? '1px solid white' : 'none')};
+    color: ${props => (props.transparent ? 'white' : 'none')};
+    border-radius: 0.5em;
+    :hover {
+      transform: scale(1.05);
+      transition: all 0.5s ease;
+      background: ${props => props.transparent && '#181818'};
+    }
+    @media ${({ theme }) => theme.device.tablet} {
+      margin-bottom: 0em;
+      width: 200px;
+    }
   }
   @media ${({ theme }) => theme.device.mobileL} {
     flex-direction: row;
