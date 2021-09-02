@@ -24,7 +24,9 @@ const reducer = (state, action) => {
         films: action.films
       }
     case actionTypes.ADD_FAVORITES:
-      const exist = state.favorites.find(item => item?.id == action.favorite.id)
+      const exist = state.favorites.find(
+        item => item?.id == action.favorite?.id
+      )
       if (exist) {
         return {
           ...state

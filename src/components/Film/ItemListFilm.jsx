@@ -8,11 +8,16 @@ import Link from 'next/link'
 import { useFavorites } from '../../hooks/useFavorites'
 
 export const ItemListFilm = ({ item, favorite }) => {
-  const { AddToFavorites, DeleteToFavorites } = useFavorites(item)
+  const {
+    favorites,
+    AddToFavorites,
+    DeleteToFavorites,
+    isFavorite
+  } = useFavorites(item)
 
   return (
     <Container>
-      <Link href={`/detail/${item?.id}`}>
+      <Link href={`detail/${item?.id}`}>
         <ImageContainer>
           <a>
             <Img src={`${urls[0]?.images + item?.poster_path}`} />

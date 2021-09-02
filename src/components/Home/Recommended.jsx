@@ -1,9 +1,7 @@
 import { Item } from '../Shows/Item'
 import styled from 'styled-components'
-import Link from 'next/link'
 
 export const Recommended = ({ tvShow, title, movies }) => {
-  console.log(movies, 'movies')
   return (
     <Container>
       <Title>{title}</Title>

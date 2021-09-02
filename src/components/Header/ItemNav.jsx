@@ -4,7 +4,7 @@ import styled from 'styled-components'
 export const ItemNav = ({ icon, title }) => {
   return (
     <NavItem>
-      <Link href={`/${title == 'Home' ? '/' : title.toLowerCase()}`}>
+      <Link href={`${title == 'Home' ? '/' : '/' + title.toLowerCase()}`}>
         <a>
           <Button>
             {icon}

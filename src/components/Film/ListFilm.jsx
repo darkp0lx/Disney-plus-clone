@@ -3,7 +3,6 @@ import { useStateValue } from '../../store/StateProvider'
 import { ItemListFilm } from './ItemListFilm'
 
 export const ListFilm = ({ movies, favorite }) => {
-  console.log(movies)
   return (
     <Container>
       <Title>{favorite ? 'Mis Favoritos' : 'Films'}</Title>

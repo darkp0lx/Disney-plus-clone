@@ -1,4 +1,3 @@
-import Img from 'react-cool-img'
 import styled from 'styled-components'
 import { ItemBanner } from '../Banner/ItemBanner'
 export const Banner = () => {
@@ -30,6 +29,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
 `
 const Item = styled.div`
   width: 35%;

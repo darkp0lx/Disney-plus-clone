@@ -2,7 +2,7 @@ import { actionTypes } from '../store/reducer'
 import { useStateValue } from '../store/StateProvider'
 
 export const useFavorites = film => {
-  const [favorites, dispatch] = useStateValue()
+  const [{ favorites }, dispatch] = useStateValue()
 
   const AddToFavorites = () => {
     dispatch({
@@ -16,10 +16,15 @@ export const useFavorites = film => {
       favorite: film
     })
   }
+  const isFavorite = () => {
+    const isFavorite = favorites.find(movie => movie.id === film.id)
+    return isFavorite ? true : false
+  }
 
   return {
     favorites,
     AddToFavorites,
-    DeleteToFavorites
+    DeleteToFavorites,
+    isFavorite
   }
 }

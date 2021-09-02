@@ -1,11 +1,30 @@
 import Img from 'react-cool-img'
 import styled from 'styled-components'
-import { FaPlay, FaPlus, FaUserFriends } from 'react-icons/fa'
-import { urls } from '../../utils/utils'
-import { useFavorites } from '../../hooks/useFavorites'
+import ReactTooltip from 'react-tooltip'
 
+import { urls } from '../../utils/utils'
+import {
+  FacebookShareCount,
+  FacebookShareButton,
+  FacebookIcon
+} from 'react-share'
+import { useFavorites } from '../../hooks/useFavorites'
+import { FaPlay, FaPlus, FaTrashAlt } from 'react-icons/fa'
+import { useRouter } from 'next/router'
 export const DetailFilm = ({ item }) => {
-  const { favorites, AddToFavorites, deleteToFavorites } = useFavorites()
+  const { AddToFavorites, DeleteToFavorites, isFavorite } = useFavorites(item)
+
+  const route = useRouter()
+  const shareUrl = `https://disney-plus-clone-inky.vercel.app/${route.asPath}`
+  const itemName = item.original_name
+    ? item.original_name
+    : item.original_title
+    ? item.original_title
+    : item.title
+    ? item.title
+    : item.name
+
+  const title = `${itemName} Disney Plus Clone`
 
   return (
     <Container>
@@ -24,16 +43,49 @@ export const DetailFilm = ({ item }) => {
             trailler
           </ButtonDetail>
           <ContainerButtonsPlus>
-            <ButtonPlus onClick={AddToFavorites}>
-              <FaPlus size={25} />
-            </ButtonPlus>
+            {!isFavorite() ? (
+              <ButtonPlus onClick={AddToFavorites}>
+                <p data-tip='agregar a favorito'>
+                  <FaPlus size={25} />
+                </p>
+                <ReactTooltip />
+              </ButtonPlus>
+            ) : (
+              <ButtonPlus onClick={DeleteToFavorites}>
+                <p data-tip='quitar de favorito'>
+                  <FaTrashAlt size={25} />
+                </p>
+                <ReactTooltip />
+              </ButtonPlus>
+            )}
             <ButtonPlus>
-              <FaUserFriends size={25} />
+              <p data-tip='compartir por facebook'>
+                <FacebookShareButton
+                  url={shareUrl}
+                  quote={title}
+                  className='Demo__some-network__share-button'
+                >
+                  <FacebookIcon
+                    style={{ marginLeft: '4px', outline: 'none' }}
+                    size={40}
+                    round
+                  />
+                </FacebookShareButton>
+
+                <div>
+                  <FacebookShareCount
+                    url={shareUrl}
+                    className='Demo__some-network__share-count'
+                  >
+                    {count => count}
+                  </FacebookShareCount>
+                </div>
+              </p>
             </ButtonPlus>
           </ContainerButtonsPlus>
         </ContainerButtons>
         <MoreDetails>2018 • 7m • Family, Fantasy, Kids, Animation</MoreDetails>
-        <h2>{item?.original_title}</h2>
+        <h2>{itemName}</h2>
         <Description>{item?.overview}</Description>
       </SideInfo>
     </Container>
@@ -63,7 +115,6 @@ const Container = styled.div`
 
   @media ${({ theme }) => theme.device.tablet} {
     align-items: center;
-    padding-top: 7vh;
     padding-bottom: 1em;
     flex-direction: row-reverse;
 
@@ -73,7 +124,7 @@ const Container = styled.div`
     }
   }
   @media ${({ theme }) => theme.device.laptopL} {
-    height: 69vh;
+    height: 85vh;
   }
 `
 const Description = styled.p`
@@ -128,11 +179,13 @@ const ButtonDetail = styled.button`
 `
 
 const ButtonPlus = styled.button`
+  outline: none;
   border: 1px solid white;
   border-radius: 55%;
   color: white;
   background: #1a1a1a82;
   width: 40px;
+  height: 40px;
   margin: auto;
   text-align: center;
   display: flex;
@@ -142,10 +195,11 @@ const ButtonPlus = styled.button`
   :hover {
     color: #1a1a1a82;
     background: white;
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
   @media ${({ theme }) => theme.device.tablet} {
     width: 35px;
+    height: 35px;
   }
 `
 
@@ -165,10 +219,16 @@ const SideBackground = styled.div`
     top: 0;
     right: 0;
     bottom: 0;
-    box-shadow: inset -2px -19px 15px 21px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 101px 0px 37px -41px rgba(4, 7, 20, 1);
   }
   @media ${({ theme }) => theme.device.tablet} {
     position: relative;
+    height: 500px;
+  }
+  @media ${({ theme }) => theme.device.laptopL} {
+    img {
+      object-fit: scale-down;
+    }
   }
 `
 const SideInfo = styled.div`
@@ -184,4 +244,9 @@ const Overview = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
+  @media ${({ theme }) => theme.device.tablet} {
+    -webkit-box-shadow: inset 101px 0px 37px -41px rgba(4, 7, 20, 1);
+    -moz-box-shadow: inset 101px 0px 37px -41px rgba(4, 7, 20, 1);
+    box-shadow: inset 101px 0px 37px -41px rgba(4, 7, 20, 1);
+  }
 `

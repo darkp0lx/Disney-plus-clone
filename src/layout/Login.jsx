@@ -1,23 +1,18 @@
 import styled from 'styled-components'
 
 import { SiGmail } from 'react-icons/si'
-import { FaFacebookSquare } from 'react-icons/fa'
 import { useUser } from '../hooks/useUser'
 import Img from 'react-cool-img'
 export const Login = () => {
-  const { user, SignInFacebook, signInGmail } = useUser()
+  const { user, signInFacebook, signInGmail } = useUser()
 
   return (
     <Container>
       <Img className='logo' src='/images/logo.svg' />
-      <h2>Registrate Con Nosotros</h2>
-      <ButtonSignUp onClick={SignInFacebook}>
-        Regístrate con:
-        <FaFacebookSquare size={30} />
-      </ButtonSignUp>
+      <h2>Identificate Para entrar 🤞 </h2>
       <ButtonSignUp onClick={signInGmail}>
-        Regístrate con:
-        <SiGmail size={30} />
+        ingresa con gmail
+        <SiGmail size={40} />
       </ButtonSignUp>
     </Container>
   )
@@ -35,9 +30,13 @@ const Container = styled.div`
   }
 `
 const ButtonSignUp = styled.a`
+  cursor: pointer;
+  border-radius: 1em;
+  border: 1px solid white;
   display: flex;
   align-items: center;
   height: 50px;
+  padding: 0 1em;
   svg {
     margin-left: 5px;
   }
