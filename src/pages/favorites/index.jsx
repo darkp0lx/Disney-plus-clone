@@ -3,7 +3,7 @@ import { ListFilm } from '../../components/Film/ListFilm'
 import { Page } from '../../layout/Page'
 import { useStateValue } from '../../store/StateProvider'
 
-export default function index () {
+export default function Favorites () {
   const [{ favorites }, dispatch] = useStateValue()
   return (
     <Container>
