@@ -6,7 +6,7 @@ export function Page ({ children }) {
   const [{ user }, dispatch] = useStateValue()
   return (
     <>
-      {user ? (
+      {!user ? (
         <>
           <Header />
           {children}
