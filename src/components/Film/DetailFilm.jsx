@@ -36,11 +36,7 @@ export const DetailFilm = ({ item }) => {
       <SideInfo>
         <ContainerButtons>
           <ModalButton title={itemName} />
-
-          <ButtonDetail transparent border>
-            <FaPlay size={25} />
-            trailler
-          </ButtonDetail>
+          <ModalButton title={itemName} type='trailer' />
           <ContainerButtonsPlus>
             {!isFavorite() ? (
               <ButtonPlus onClick={AddToFavorites}>

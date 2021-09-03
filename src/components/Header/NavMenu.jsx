@@ -12,7 +12,6 @@ export const NavMenu = () => {
       <ul>
         <ItemNav title='Home' icon={<FaHome size={12} />} />
         <ItemNav title='Favorites' icon={<FaPlusSquare size={12} />} />
-        <ItemNav title='Movies' icon={<FaFilm size={12} />} />
       </ul>
     </Container>
   )

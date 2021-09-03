@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import styled from 'styled-components'
 import { NavMenu } from './NavMenu'
 import { UserButton } from './UserButtom'
@@ -14,14 +13,14 @@ export const Header = () => {
 }
 
 const ContainerNav = styled.div`
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   margin: 0;
   padding: 0;
   height: 55px;
-  z-index: 1;
+  z-index: 100;
   background-color: #090b13;
   display: flex;
   justify-content: space-between;

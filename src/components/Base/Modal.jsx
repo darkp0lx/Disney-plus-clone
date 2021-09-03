@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FaPlay, FaRegWindowClose } from 'react-icons/fa'
+import { FaFilm, FaPlay, FaRegWindowClose } from 'react-icons/fa'
 import Modal from 'react-modal'
 import styled from 'styled-components'
 import { IframeYoutube } from './IframeYoutube'
@@ -21,7 +21,7 @@ const customStyles = {
   }
 }
 
-export const ModalButton = ({ title }) => {
+export const ModalButton = ({ title, type }) => {
   let subtitle
   const [modalIsOpen, setIsOpen] = useState(false)
 
@@ -40,10 +40,17 @@ export const ModalButton = ({ title }) => {
 
   return (
     <Container>
-      <button type='play' onClick={openModal}>
-        <FaPlay size={25} />
-        play
-      </button>
+      {type == 'trailer' ? (
+        <button border transparent onClick={openModal}>
+          <FaFilm size={25} />
+          trailer
+        </button>
+      ) : (
+        <button onClick={openModal}>
+          <FaPlay size={25} />
+          play
+        </button>
+      )}
       <Modal
         isOpen={modalIsOpen}
         onAfterOpen={afterOpenModal}
@@ -52,12 +59,13 @@ export const ModalButton = ({ title }) => {
         contentLabel='Example Modal'
       >
         <TopModal>
-          <h2 ref={_subtitle => (subtitle = _subtitle)}>{title}</h2>
+          <h2 ref={_subtitle => (subtitle = _subtitle)}>
+            {type ? `trailer de ${title}` : `pelicula ${title}`}
+          </h2>
           <button className='buttonClose' onClick={closeModal}>
             <FaRegWindowClose size={25} />
           </button>
         </TopModal>
-
         <div>
           <IframeYoutube />
         </div>
