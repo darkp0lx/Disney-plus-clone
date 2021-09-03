@@ -53,7 +53,7 @@ const Carousel = styled(Slider)`
   .slick-list {
     overflow: visible;
     .slick-track {
-      height: 300px;
+      height: 400px;
     }
   }
 
