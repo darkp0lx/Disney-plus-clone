@@ -39,6 +39,7 @@ export default ImgSlider
 const Carousel = styled(Slider)`
   margin: 0 2em;
   margin-top: 20px;
+  height: 250px;
   ul li button {
     &:before {
       font-size: 10px;
@@ -60,10 +61,10 @@ const Carousel = styled(Slider)`
   button {
     z-index: 1;
   }
-  @media ${({ theme }) => theme.device.mobile} {
-  }
+
   @media ${({ theme }) => theme.device.tablet} {
     margin: 0 2em;
+    height: 100%;
   }
 `
 
@@ -74,13 +75,17 @@ const Wrap = styled.div`
     border-radius: 4px;
     width: 100%;
     margin: 0 auto;
-    height: 100%;
+    height: 230px;
     box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px,
       rgb(0 0 0 / 73%) 0px 16px 10px -10px;
     transition-duration: 300ms;
 
     &:hover {
       border: 4px solid rgba(249, 249, 249, 0.8);
+    }
+
+    @media ${({ theme }) => theme.device.tablet} {
+      height: 100%;
     }
   }
 `

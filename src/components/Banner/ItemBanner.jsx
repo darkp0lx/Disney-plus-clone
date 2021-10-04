@@ -32,8 +32,8 @@ export const ItemBanner = ({ image, video }) => {
 }
 
 const Container = styled.div`
-  width: 18%;
-  margin-right: 10px;
+  width: 95%;
+  margin: 0 auto;
   border-radius: 10px;
   img {
   }
@@ -42,7 +42,7 @@ const Container = styled.div`
     border-radius: 10px;
   }
   :hover {
-    transform: scale(1.06);
+    transform: scale(1.1);
     transition: all 0.5s ease;
   }
 `

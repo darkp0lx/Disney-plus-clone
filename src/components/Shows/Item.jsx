@@ -8,7 +8,7 @@ import { Title } from '../Base/Title'
 export const Item = ({ item, tvShow = false }) => {
   return (
     <Container>
-      <Link href={tvShow ? `tvshow/${item.id}` : `detail/${item.id}`}>
+      <Link href={tvShow ? `/tvshow/${item.id}` : `/detail/${item.id}`}>
         <a>
           <Img src={`${urls[0]?.images + item.poster_path}`} />
           <Info>
