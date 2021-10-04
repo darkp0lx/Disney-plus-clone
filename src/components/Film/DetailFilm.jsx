@@ -15,7 +15,6 @@ import { Modal, ModalButton } from '../Base/Modal'
 
 export const DetailFilm = ({ item }) => {
   const { AddToFavorites, DeleteToFavorites, isFavorite } = useFavorites(item)
-  console.log(item, 'item')
   const route = useRouter()
   const shareUrl = `https://disney-plus-clone-inky.vercel.app/${route.asPath}`
   const itemName = item?.original_name
@@ -93,10 +92,12 @@ export const DetailFilm = ({ item }) => {
           <Description>{item?.overview}</Description>
         </SideInfo>
       </ContainerHero>
-      {item.seasons && (
+      {item?.seasons && (
         <Season>{item?.seasons?.map(season => season.name)}</Season>
       )}
-      {item.genres && <Season>{item.genres.map(season => season.name)}</Season>}
+      {item?.genres && (
+        <Season>{item?.genres?.map(season => season.name)}</Season>
+      )}
     </Container>
   )
 }

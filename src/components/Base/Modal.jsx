@@ -41,7 +41,7 @@ export const ModalButton = ({ title, type }) => {
   return (
     <Container>
       {type == 'trailer' ? (
-        <button border transparent onClick={openModal}>
+        <button border='true' transparent='true' onClick={openModal}>
           <FaFilm size={25} />
           trailer
         </button>

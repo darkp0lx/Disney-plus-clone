@@ -32,6 +32,6 @@ export async function getStaticProps ({ params: { slug } }) {
 export async function getStaticPaths () {
   return {
     paths: [],
-    fallback: false
+    fallback: true
   }
 }
