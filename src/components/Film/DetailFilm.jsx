@@ -12,6 +12,7 @@ import { useFavorites } from '../../hooks/useFavorites'
 import { FaPlay, FaPlus, FaTrashAlt } from 'react-icons/fa'
 import { useRouter } from 'next/router'
 import { Modal, ModalButton } from '../Base/Modal'
+
 export const DetailFilm = ({ item }) => {
   const { AddToFavorites, DeleteToFavorites, isFavorite } = useFavorites(item)
   console.log(item, 'item')
@@ -84,8 +85,8 @@ export const DetailFilm = ({ item }) => {
             2018 • 7m • Family, Fantasy, Kids, Animation
           </MoreDetails>
           <Genres>
-            {item?.genres?.map(e => (
-              <GenreItem>{e.name}</GenreItem>
+            {item?.genres?.map((e, index) => (
+              <GenreItem key={index}>{e.name}</GenreItem>
             ))}
           </Genres>
           <h2>{itemName}</h2>

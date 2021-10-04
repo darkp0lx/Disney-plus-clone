@@ -3,7 +3,7 @@ import { ListFilm } from '../../components/Film/ListFilm'
 import { Page } from '../../layout/Page'
 import { useStateValue } from '../../store/StateProvider'
 
-export default function Index () {
+const Index = () => {
   const [{ favorites }, dispatch] = useStateValue()
   return (
     <Container>
@@ -13,6 +13,7 @@ export default function Index () {
     </Container>
   )
 }
+export default Index
 const Container = styled.div`
   margin-top: 6em;
 `

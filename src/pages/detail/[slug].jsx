@@ -14,7 +14,9 @@ function Film ({ slug, item }) {
     </>
   )
 }
-export const getStaticProps = async ({ params: { slug } }) => {
+export default Film
+
+export async function getStaticProps ({ params: { slug } }) {
   const res = await fetch(
     `https://api.themoviedb.org/3/movie/${slug}?api_key=${accessToken}`
   )
@@ -30,8 +32,6 @@ export const getStaticProps = async ({ params: { slug } }) => {
 export async function getStaticPaths () {
   return {
     paths: [],
-    fallback: true
+    fallback: false
   }
 }
-
-export default Film

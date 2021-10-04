@@ -14,8 +14,8 @@ export const ListFilm = ({ movies, favorite }) => {
         <Title>Mis Favoritos</Title>
       )}
       <ContainerGrid>
-        {movies?.map(item => (
-          <ItemListFilm favorite={favorite} key={item.id} item={item} />
+        {movies?.map((item, index) => (
+          <ItemListFilm favorite={favorite} key={index} item={item} />
         ))}
       </ContainerGrid>
     </Container>
