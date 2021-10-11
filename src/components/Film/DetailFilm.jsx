@@ -243,6 +243,7 @@ const SideBackground = styled.div`
     bottom: 0;
     box-shadow: inset 101px 0px 37px -41px rgba(4, 7, 20, 1);
     filter: opacity(0.4);
+    object-fit: contain;
   }
   @media ${({ theme }) => theme.device.tablet} {
     position: relative;

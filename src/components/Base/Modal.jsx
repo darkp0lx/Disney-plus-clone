@@ -73,14 +73,13 @@ export const ModalButton = ({ title, type }) => {
     </Container>
   )
 }
-
 const Container = styled.div`
   button {
+    cursor: pointer !important;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 120px;
-
     height: 55px;
     font-size: 1.3em;
     margin-bottom: 0.5em;

@@ -17,7 +17,7 @@ export const ItemListFilm = ({ item, favorite }) => {
 
   return (
     <Container>
-      <Link href={`/detail/${item?.id}`}>
+      <Link href={`/detail/${encodeURIComponent(item?.id)}`}>
         <ImageContainer>
           <a>
             <Img src={`${urls[0]?.images + item?.poster_path}`} />
