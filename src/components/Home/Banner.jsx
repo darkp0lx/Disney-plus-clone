@@ -25,35 +25,12 @@ export const Banner = () => {
 }
 
 const Container = styled.div`
-  margin: 2em;
+  /*  margin: 2em;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-`
-const Item = styled.div`
-  width: 35%;
-  height: 35px;
-  padding: 1em;
-  border: 2px solid rgba(249, 249, 249, 0.1);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1em;
-  box-shadow: rgb(0 0 0 / 69%) 0px 26px 30px -10px,
-    rgb(0 0 0 / 73%) 0px 16px 10px -10px;
-  cursor: pointer;
-  img {
-    width: 100%;
-  }
-  :hover {
-    transform: scale(1.1);
-    transition: all 1s ease;
-    border: 1px solid white;
-  }
+  flex-wrap: wrap; */
   @media ${({ theme }) => theme.device.tablet} {
-    width: 15%;
-    height: 100px;
+    display: flex;
   }
 `

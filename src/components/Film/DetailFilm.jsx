@@ -12,9 +12,9 @@ import { useFavorites } from '../../hooks/useFavorites'
 import { FaPlay, FaPlus, FaTrashAlt } from 'react-icons/fa'
 import { useRouter } from 'next/router'
 import { Modal, ModalButton } from '../Base/Modal'
+
 export const DetailFilm = ({ item }) => {
   const { AddToFavorites, DeleteToFavorites, isFavorite } = useFavorites(item)
-
   const route = useRouter()
   const shareUrl = `https://disney-plus-clone-inky.vercel.app/${route.asPath}`
   const itemName = item?.original_name
@@ -29,69 +29,93 @@ export const DetailFilm = ({ item }) => {
 
   return (
     <Container>
-      <SideBackground>
-        <Img src={`${urls[0]?.images + item?.poster_path}`} />
-        <Overview></Overview>
-      </SideBackground>
-      <SideInfo>
-        <ContainerButtons>
-          <ModalButton title={itemName} />
-
-          <ButtonDetail transparent border>
-            <FaPlay size={25} />
-            trailler
-          </ButtonDetail>
-          <ContainerButtonsPlus>
-            {!isFavorite() ? (
-              <ButtonPlus onClick={AddToFavorites}>
-                <p data-tip='agregar a favorito'>
-                  <FaPlus size={25} />
-                </p>
-                <ReactTooltip />
-              </ButtonPlus>
-            ) : (
-              <ButtonPlus onClick={DeleteToFavorites}>
-                <p data-tip='quitar de favorito'>
-                  <FaTrashAlt size={25} />
-                </p>
-                <ReactTooltip />
-              </ButtonPlus>
-            )}
-            <ButtonPlus>
-              <p data-tip='compartir por facebook'>
-                <FacebookShareButton
-                  url={shareUrl}
-                  quote={title}
-                  className='Demo__some-network__share-button'
-                >
-                  <FacebookIcon
-                    style={{ marginLeft: '4px', outline: 'none' }}
-                    size={40}
-                    round
-                  />
-                </FacebookShareButton>
-
-                <div>
-                  <FacebookShareCount
+      <ContainerHero>
+        <SideBackground>
+          <Img src={`${urls[0]?.images + item?.poster_path}`} />
+          <Overview></Overview>
+        </SideBackground>
+        <SideInfo>
+          <ContainerButtons>
+            <ModalButton title={itemName} />
+            <ModalButton title={itemName} type='trailer' />
+            <ContainerButtonsPlus>
+              {!isFavorite() ? (
+                <ButtonPlus onClick={AddToFavorites}>
+                  <p data-tip='agregar a favorito'>
+                    <FaPlus size={25} />
+                  </p>
+                  <ReactTooltip />
+                </ButtonPlus>
+              ) : (
+                <ButtonPlus onClick={DeleteToFavorites}>
+                  <p data-tip='quitar de favorito'>
+                    <FaTrashAlt size={25} />
+                  </p>
+                  <ReactTooltip />
+                </ButtonPlus>
+              )}
+              <ButtonPlus>
+                <p data-tip='compartir por facebook'>
+                  <FacebookShareButton
                     url={shareUrl}
-                    className='Demo__some-network__share-count'
+                    quote={title}
+                    className='Demo__some-network__share-button'
                   >
-                    {count => count}
-                  </FacebookShareCount>
-                </div>
-              </p>
-            </ButtonPlus>
-          </ContainerButtonsPlus>
-        </ContainerButtons>
-        <MoreDetails>2018 • 7m • Family, Fantasy, Kids, Animation</MoreDetails>
-        <h2>{itemName}</h2>
-        <Description>{item?.overview}</Description>
-      </SideInfo>
+                    <FacebookIcon
+                      style={{ marginLeft: '4px', outline: 'none' }}
+                      size={40}
+                      round
+                    />
+                  </FacebookShareButton>
+
+                  <div>
+                    <FacebookShareCount
+                      url={shareUrl}
+                      className='Demo__some-network__share-count'
+                    >
+                      {count => count}
+                    </FacebookShareCount>
+                  </div>
+                </p>
+              </ButtonPlus>
+            </ContainerButtonsPlus>
+          </ContainerButtons>
+          <MoreDetails>
+            2018 • 7m • Family, Fantasy, Kids, Animation
+          </MoreDetails>
+          <Genres>
+            {item?.genres?.map((e, index) => (
+              <GenreItem key={index}>{e.name}</GenreItem>
+            ))}
+          </Genres>
+          <h2>{itemName}</h2>
+          <Description>{item?.overview}</Description>
+        </SideInfo>
+      </ContainerHero>
+      {item?.seasons && (
+        <Season>{item?.seasons?.map(season => season.name)}</Season>
+      )}
+      {item?.genres && (
+        <Season>{item?.genres?.map(season => season.name)}</Season>
+      )}
     </Container>
   )
 }
+const GenreItem = styled.p`
+  border: 1px solid white;
+  padding: 0 5px;
+  border-radius: 1em;
+  margin: 0;
+`
+const Genres = styled.div`
+  display: flex;
+  gap: 5px;
+`
+const Season = styled.div``
+const Container = styled.div``
 
-const Container = styled.div`
+const ContainerHero = styled.div`
+  margin-top: 3.5em;
   position: relative;
   display: flex;
   align-items: center;
@@ -176,32 +200,6 @@ const ContainerButtons = styled.div`
   }
 `
 
-const ButtonDetail = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 45%;
-  height: 55px;
-  font-size: 1.3em;
-  margin-bottom: 0.5em;
-  svg {
-    margin-right: 4px;
-  }
-  background: ${props => (props.transparent ? 'transparent' : 'white')};
-  border: ${props => (props.border ? '1px solid white' : 'none')};
-  color: ${props => (props.transparent ? 'white' : 'none')};
-  border-radius: 0.5em;
-  :hover {
-    transform: scale(1.05);
-    transition: all 0.5s ease;
-    background: ${props => props.transparent && '#181818'};
-  }
-  @media ${({ theme }) => theme.device.tablet} {
-    margin-bottom: 0em;
-    width: 200px;
-  }
-`
-
 const ButtonPlus = styled.button`
   outline: none;
   border: 1px solid white;
@@ -244,6 +242,8 @@ const SideBackground = styled.div`
     right: 0;
     bottom: 0;
     box-shadow: inset 101px 0px 37px -41px rgba(4, 7, 20, 1);
+    filter: opacity(0.4);
+    object-fit: contain;
   }
   @media ${({ theme }) => theme.device.tablet} {
     position: relative;

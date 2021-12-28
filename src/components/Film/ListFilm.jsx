@@ -3,13 +3,19 @@ import { useStateValue } from '../../store/StateProvider'
 import { ItemListFilm } from './ItemListFilm'
 
 export const ListFilm = ({ movies, favorite }) => {
+  const [{ favorites }] = useStateValue()
+  console.log(favorites, 'favoritos')
   return (
     <Container>
-      <Title>{favorite ? 'Mis Favoritos' : 'Films'}</Title>
-
+      {!favorite && <Title>Peliculas</Title>}
+      {favorites.length == 0 ? (
+        <Title>no tiene favoritos</Title>
+      ) : (
+        <Title>Mis Favoritos</Title>
+      )}
       <ContainerGrid>
-        {movies?.map(item => (
-          <ItemListFilm favorite={favorite} key={item.id} item={item} />
+        {movies?.map((item, index) => (
+          <ItemListFilm favorite={favorite} key={index} item={item} />
         ))}
       </ContainerGrid>
     </Container>

@@ -36,6 +36,7 @@ Home.getInitialProps = async ctx => {
 
 const Container = styled.div`
   margin: 0;
+  margin-top: 4em;
   padding: 0;
   overflow: hidden;
 `
